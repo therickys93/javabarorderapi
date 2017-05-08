@@ -26,5 +26,4 @@ public class Orders implements Sendable {
 	public String method() {
 		return this.method;
 	}
-
 }

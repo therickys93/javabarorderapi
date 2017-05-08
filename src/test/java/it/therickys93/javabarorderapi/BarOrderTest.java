@@ -7,8 +7,6 @@ import java.io.IOException;
 import org.junit.Test;
 
 public class BarOrderTest {
-
-	// TODO: mancano parser per gli ordini
 	
 	@Test
 	public void testOne() {

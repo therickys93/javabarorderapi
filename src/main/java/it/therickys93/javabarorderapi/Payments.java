@@ -26,5 +26,4 @@ public class Payments implements Sendable {
 	public String method() {
 		return this.method;
 	}
-
 }

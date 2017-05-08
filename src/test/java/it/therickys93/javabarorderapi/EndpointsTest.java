@@ -22,9 +22,9 @@ public class EndpointsTest {
 	
 	@Test
 	public void testThree() {
-		Response status = Response.parseResponse("{\"success\":true}");
+		Response status = Response.parseSuccess("{\"success\":true}");
 		assertTrue(status.ok());
-		status = Response.parseResponse("{\"success\":false}");
+		status = Response.parseSuccess("{\"success\":false}");
 		assertFalse(status.ok());
 	}
 	
@@ -58,7 +58,7 @@ public class EndpointsTest {
 	
 	@Test
 	public void testEight() {
-		List<Product> products = Products.parseProducts(productsJson());
+		List<Product> products = Response.parseProducts(productsJson());
 		assertEquals(32, products.size());
 	}
 	
@@ -110,4 +110,18 @@ public class EndpointsTest {
 		assertEquals("/v1/payments", payments.endpoint());
 	}
 	
+	@Test
+	public void testFourteen() {
+		List<Order> orders =  Response.parseOrders(orders());
+		assertEquals(3, orders.size());
+	}
+	
+	private String orders(){
+		return "[{\"id\":102,\"table\":20,\"done\":false,\"products\":"
+				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}]},"
+				+ "{\"id\":103,\"table\":20,\"done\":false,\"products\":"
+				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}]},"
+				+ "{\"id\":104,\"table\":20,\"done\":false,\"products\":"
+				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}]}]";
+	}	
 }
