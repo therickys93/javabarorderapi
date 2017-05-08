@@ -18,6 +18,7 @@ public class EndpointsTest {
 		Status status = new Status();
 		assertEquals("GET", status.method());
 		assertEquals("/v1/status", status.endpoint());
+		assertNull(status.toJson());
 	}
 	
 	@Test
@@ -33,6 +34,7 @@ public class EndpointsTest {
 		DeleteProductAll product = new DeleteProductAll();
 		assertEquals("POST", product.method());
 		assertEquals("/v1/deleteProductAll", product.endpoint());
+		assertNull(product.toJson());
 	}
 	
 	@Test
@@ -40,6 +42,7 @@ public class EndpointsTest {
 		InsertProduct product = new InsertProduct("cioccolata con panna");
 		assertEquals("POST", product.method());
 		assertEquals("/v1/insertProduct/cioccolata con panna", product.endpoint());
+		assertNull(product.toJson());
 	}
 	
 	@Test
@@ -47,6 +50,7 @@ public class EndpointsTest {
 		DeleteProduct product = new DeleteProduct("cioccolata con panna");
 		assertEquals("POST", product.method());
 		assertEquals("/v1/deleteProduct/cioccolata con panna", product.endpoint());
+		assertNull(product.toJson());
 	}
 	
 	@Test
@@ -54,6 +58,7 @@ public class EndpointsTest {
 		Products products = new Products();
 		assertEquals("GET", products.method());
 		assertEquals("/v1/products", products.endpoint());
+		assertNull(products.toJson());
 	}
 	
 	@Test
@@ -101,6 +106,7 @@ public class EndpointsTest {
 		Orders orders = new Orders();
 		assertEquals("GET", orders.method());
 		assertEquals("/v1/orders", orders.endpoint());
+		assertNull(orders.toJson());
 	}
 	
 	@Test
@@ -108,6 +114,7 @@ public class EndpointsTest {
 		Payments payments = new Payments();
 		assertEquals("GET", payments.method());
 		assertEquals("/v1/payments", payments.endpoint());
+		assertNull(payments.toJson());
 	}
 	
 	@Test
