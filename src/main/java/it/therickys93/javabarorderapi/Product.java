@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 
 public class Product {
 
+	private static final String QUANTITY = "quantity";
+	private static final String NAME = "name";
 	private String name;
 	private int quantity;
 	
@@ -29,8 +31,8 @@ public class Product {
 
 	public JsonObject toJson() {
 		JsonObject product = new JsonObject();
-		product.addProperty("name", this.name);
-		product.addProperty("quantity", this.quantity);
+		product.addProperty(NAME, this.name);
+		product.addProperty(QUANTITY, this.quantity);
 		return product;
 	}
 

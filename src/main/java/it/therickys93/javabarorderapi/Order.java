@@ -5,6 +5,10 @@ import com.google.gson.JsonObject;
 
 public class Order {
 
+	private static final String PRODUCTS = "products";
+	private static final String DONE = "done";
+	private static final String TABLE = "table";
+	private static final String ID = "id";
 	private int id;
 	private int table;
 	private boolean done;
@@ -52,14 +56,14 @@ public class Order {
 
 	public JsonObject toJson() {
 		JsonObject order = new JsonObject();
-		order.addProperty("id", this.id);
-		order.addProperty("table", this.table);
-		order.addProperty("done", this.done);
+		order.addProperty(ID, this.id);
+		order.addProperty(TABLE, this.table);
+		order.addProperty(DONE, this.done);
 		JsonArray products = new JsonArray();
 		for(int index = 0; index < this.products.length; index++){
 			products.add(this.products[index].toJson());
 		}
-		order.add("products", products);
+		order.add(PRODUCTS, products);
 		return order;
 	}
 	
