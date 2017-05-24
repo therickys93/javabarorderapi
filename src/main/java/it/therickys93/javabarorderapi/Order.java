@@ -66,5 +66,21 @@ public class Order {
 		order.add(PRODUCTS, products);
 		return order;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTable(int table) {
+		this.table = table;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public void setProducts(Product[] products) {
+		this.products = products;
+	}
 	
 }

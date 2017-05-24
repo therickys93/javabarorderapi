@@ -39,4 +39,47 @@ public class OrderTest {
 				+ "{\"name\":\"bibite\",\"quantity\":3}]}", order.toJson().toString());
 	}
 	
+	@Test
+	public void testFive() {
+		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
+		Order order = new Order(102, 20, false, products);
+		assertEquals(102, order.id());
+		order.setId(30493);
+		assertEquals(30493, order.id());
+	}
+	
+	@Test
+	public void testSix() {
+		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
+		Order order = new Order(102, 20, false, products);
+		assertEquals(20, order.table());
+		order.setTable(44);
+		assertEquals(44, order.table());
+	}
+	
+	@Test
+	public void testSeven() {
+		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
+		Order order = new Order(102, 20, false, products);
+		assertFalse(order.done());
+		order.setDone(true);
+		assertTrue(order.done());
+	}
+	
+	@Test
+	public void testEight() {
+		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
+		Product[] newProducts = {new Product("acqua", 4), new Product("bibite", 8)};
+		Order order = new Order(102, 20, false, products);
+		assertEquals("brioches", order.products()[0].name());
+		assertEquals(2, order.products()[0].quantity());
+		assertEquals("cappuccino", order.products()[1].name());
+		assertEquals(3, order.products()[1].quantity());
+		order.setProducts(newProducts);
+		assertEquals("acqua", order.products()[0].name());
+		assertEquals(4, order.products()[0].quantity());
+		assertEquals("bibite", order.products()[1].name());
+		assertEquals(8, order.products()[1].quantity());
+	}
+	
 }
