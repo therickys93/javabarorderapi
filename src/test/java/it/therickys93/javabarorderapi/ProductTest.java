@@ -30,4 +30,10 @@ public class ProductTest {
 		assertEquals("{\"name\":\"acqua\",\"quantity\":2}", product.toJson().toString());
 	}
 	
+	@Test
+	public void testFive() {
+		Product product = new Product("acqua", 3);
+		assertEquals("3 acqua", product.prettyToString());
+	}
+	
 }

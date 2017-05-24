@@ -82,5 +82,24 @@ public class Order {
 	public void setProducts(Product[] products) {
 		this.products = products;
 	}
+
+	public String prettyToString() {
+		String response = "";
+		response += "Order Details:\ntable: ";
+		if(this.table == 0){
+			response += "No Table Selected";
+		} else {
+			response += this.table;
+		}
+		response += "\n";
+		if(this.products.length == 0){
+			response += "No Products Selected\n";
+		} else {
+			for(int index = 0; index < this.products.length; index++){
+				response += this.products[index].prettyToString() + "\n";
+			}
+		}
+		return response;
+	}
 	
 }

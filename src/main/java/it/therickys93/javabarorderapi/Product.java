@@ -36,4 +36,8 @@ public class Product {
 		return product;
 	}
 
+	public String prettyToString() {
+		return this.quantity + " " + this.name;
+	}
+
 }
