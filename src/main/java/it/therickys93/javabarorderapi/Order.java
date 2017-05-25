@@ -21,6 +21,10 @@ public class Order {
 		this.products = products;
 	}
 
+	public Order() {
+		this(0, 0, false, new Product[0]);
+	}
+
 	public int id() {
 		return this.id;
 	}
@@ -99,7 +103,7 @@ public class Order {
 				response += this.products[index].prettyToString() + "\n";
 			}
 		}
-		return response;
+		return response.substring(0, response.length() - 1);
 	}
 	
 }

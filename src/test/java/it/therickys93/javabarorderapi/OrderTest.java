@@ -86,10 +86,19 @@ public class OrderTest {
 	public void testNine() {
 		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
 		Order order = new Order(102, 20, false, products);
-		assertEquals("Order Details:\ntable: 20\n2 brioches\n3 cappuccino\n", order.prettyToString());
+		assertEquals("Order Details:\ntable: 20\n2 brioches\n3 cappuccino", order.prettyToString());
 		order.setTable(0);
 		order.setProducts(new Product[0]);
-		assertEquals("Order Details:\ntable: No Table Selected\nNo Products Selected\n", order.prettyToString());
+		assertEquals("Order Details:\ntable: No Table Selected\nNo Products Selected", order.prettyToString());
+	}
+	
+	@Test
+	public void testTen() {
+		Order order = new Order();
+		assertEquals(0, order.id());
+		assertEquals(0, order.table());
+		assertFalse(order.done());
+		assertEquals(0, order.products().length);
 	}
 	
 }
