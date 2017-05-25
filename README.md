@@ -19,7 +19,7 @@ aggiungere nel file del progetto
 
 ```
 dependencies {
-        compile 'com.github.therickys93:javabarorderapi:0.0.2'
+        compile 'com.github.therickys93:javabarorderapi:0.0.3'
 }
 
 ```
