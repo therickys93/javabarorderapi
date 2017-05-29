@@ -138,12 +138,51 @@ public class EndpointsTest {
 		assertEquals("1.0.0", response.version());
 	}
 	
+	@Test
+	public void improveCodeCoverageOne() {
+		Response response = Response.parseStatus(statusOkTwo());
+		assertFalse(response.server());
+		assertFalse(response.database());
+		assertFalse(response.ok());
+		assertEquals("1.0.0", response.version());
+	}
+	
+	@Test
+	public void improveCodeCoverageTwo() {
+		Response response = Response.parseStatus(statusOkThree());
+		assertFalse(response.server());
+		assertTrue(response.database());
+		assertFalse(response.ok());
+		assertEquals("1.0.0", response.version());
+	}
+	
+	@Test
+	public void improveCodeCoverageThree() {
+		Response response = Response.parseStatus(statusOkFour());
+		assertTrue(response.server());
+		assertFalse(response.database());
+		assertFalse(response.ok());
+		assertEquals("1.0.0", response.version());
+	}
+	
 	private String statusNotOk(){
 		return "{\"success\":false}";
 	}
 	
 	private String statusOk(){
 		return "{\"server\":true,\"database\":true,\"version\":\"1.0.0\"}";
+	}
+	
+	private String statusOkTwo(){
+		return "{\"server\":false,\"database\":false,\"version\":\"1.0.0\"}";
+	}
+	
+	private String statusOkThree(){
+		return "{\"server\":false,\"database\":true,\"version\":\"1.0.0\"}";
+	}
+	
+	private String statusOkFour(){
+		return "{\"server\":true,\"database\":false,\"version\":\"1.0.0\"}";
 	}
 	
 	private String orders(){
