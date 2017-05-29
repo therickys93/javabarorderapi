@@ -19,6 +19,9 @@ public class Response {
 	private static final String ID = "id";
 	private static final String SUCCESS = "success";
 	private boolean ok;
+	private boolean server;
+	private boolean database;
+	private String version;
 	
 	public static Response parseSuccess(String string) {
 		JsonParser parser = new JsonParser();
@@ -29,6 +32,12 @@ public class Response {
 	
 	private Response(boolean ok){
 		this.ok = ok;
+	}
+	
+	private Response(boolean server, boolean database, String version){
+		this.server = server;
+		this.database = database;
+		this.version = version;
 	}
 
 	public boolean ok() {
@@ -74,6 +83,34 @@ public class Response {
 			productsList.add(new Product(name, 0));
 		}
 		return productsList;
+	}
+
+	public static Response parseStatus(String string) {
+		if(string.contains(SUCCESS)){
+			JsonParser parser = new JsonParser();
+			JsonObject status = parser.parse(string).getAsJsonObject();
+			boolean ok = status.get(SUCCESS).getAsBoolean();
+			return new Response(ok);
+		} else {
+			JsonParser parser = new JsonParser();
+			JsonObject object = parser.parse(string).getAsJsonObject();
+			boolean server = object.get("server").getAsBoolean();
+			boolean database = object.get("database").getAsBoolean();
+			String version = object.get("version").getAsString();
+			return new Response(server, database, version);
+		}
+	}
+
+	public boolean server() {
+		return this.server;
+	}
+
+	public boolean database() {
+		return this.database;
+	}
+
+	public String version() {
+		return this.version;
 	}
 
 }

@@ -123,6 +123,28 @@ public class EndpointsTest {
 		assertEquals(3, orders.size());
 	}
 	
+	@Test
+	public void testFifteen() {
+		Response response = Response.parseStatus(statusNotOk());
+		assertFalse(response.ok());
+	}
+	
+	@Test
+	public void testSixteen() {
+		Response response = Response.parseStatus(statusOk());
+		assertTrue(response.server());
+		assertTrue(response.database());
+		assertEquals("1.0.0", response.version());
+	}
+	
+	private String statusNotOk(){
+		return "{\"success\":false}";
+	}
+	
+	private String statusOk(){
+		return "{\"server\":true,\"database\":true,\"version\":\"1.0.0\"}";
+	}
+	
 	private String orders(){
 		return "[{\"id\":102,\"table\":20,\"done\":false,\"products\":"
 				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}]},"
