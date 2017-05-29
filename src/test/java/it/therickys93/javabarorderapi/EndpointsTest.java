@@ -134,6 +134,7 @@ public class EndpointsTest {
 		Response response = Response.parseStatus(statusOk());
 		assertTrue(response.server());
 		assertTrue(response.database());
+		assertTrue(response.ok());
 		assertEquals("1.0.0", response.version());
 	}
 	

@@ -38,6 +38,7 @@ public class Response {
 		this.server = server;
 		this.database = database;
 		this.version = version;
+		this.ok = server && database;
 	}
 
 	public boolean ok() {
