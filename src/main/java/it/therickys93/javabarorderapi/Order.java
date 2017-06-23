@@ -89,15 +89,15 @@ public class Order {
 
 	public String prettyToString() {
 		String response = "";
-		response += "Order Details:\ntable: ";
+		response += "Dettagli Ordine:\ntavolo: ";
 		if(this.table == 0){
-			response += "No Table Selected";
+			response += "Nessun Tavolo Selezionato";
 		} else {
 			response += this.table;
 		}
-		response += "\n";
+		response += "\nprodotti:\n";
 		if(this.products.length == 0){
-			response += "No Products Selected\n";
+			response += "Nessun Prodotto Selezionato\n";
 		} else {
 			for(int index = 0; index < this.products.length; index++){
 				response += this.products[index].prettyToString() + "\n";

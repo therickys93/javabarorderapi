@@ -83,13 +83,14 @@ public class OrderTest {
 	}
 	
 	@Test
+	// TODO: da modificare
 	public void testNine() {
 		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
 		Order order = new Order(102, 20, false, products);
-		assertEquals("Order Details:\ntable: 20\n2 brioches\n3 cappuccino", order.prettyToString());
+		assertEquals("Dettagli Ordine:\ntavolo: 20\nprodotti:\n2 brioches\n3 cappuccino", order.prettyToString());
 		order.setTable(0);
 		order.setProducts(new Product[0]);
-		assertEquals("Order Details:\ntable: No Table Selected\nNo Products Selected", order.prettyToString());
+		assertEquals("Dettagli Ordine:\ntavolo: Nessun Tavolo Selezionato\nprodotti:\nNessun Prodotto Selezionato", order.prettyToString());
 	}
 	
 	@Test
