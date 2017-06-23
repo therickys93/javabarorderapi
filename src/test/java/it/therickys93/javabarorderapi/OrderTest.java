@@ -83,7 +83,6 @@ public class OrderTest {
 	}
 	
 	@Test
-	// TODO: da modificare
 	public void testNine() {
 		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
 		Order order = new Order(102, 20, false, products);
