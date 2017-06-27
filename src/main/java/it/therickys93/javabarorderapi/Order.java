@@ -57,7 +57,6 @@ public class Order {
 		response += ", products=[";
 		for(int index = 0; index < this.products.length; index++){
 			if(index == this.products.length - 1) {
-				// non mettere la virgola finale
 				response += this.products[index].toString() + "";
 			} else {
 				response += this.products[index].toString() + ", ";

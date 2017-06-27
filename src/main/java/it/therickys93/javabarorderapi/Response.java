@@ -11,6 +11,10 @@ import com.google.gson.JsonParser;
 
 public class Response {
 
+	private static final String VERSION = "version";
+	private static final String DATABASE = "database";
+	private static final String SERVER = "server";
+	private static final String PRICE = "price";
 	private static final String QUANTITY = "quantity";
 	private static final String NAME = "name";
 	private static final String PRODUCTS = "products";
@@ -56,8 +60,8 @@ public class Response {
 			int table = ordine.get(TABLE).getAsInt();
 			boolean done = ordine.get(DONE).getAsBoolean();
 			double price = 0.0;
-			if(ordine.get("price") != null){
-				price = ordine.get("price").getAsDouble();
+			if(ordine.get(PRICE) != null){
+				price = ordine.get(PRICE).getAsDouble();
 			}
 			JsonArray prodotti = ordine.get(PRODUCTS).getAsJsonArray();
 			Iterator<JsonElement> iteratorProdotti = prodotti.iterator();
@@ -99,9 +103,9 @@ public class Response {
 		} else {
 			JsonParser parser = new JsonParser();
 			JsonObject object = parser.parse(string).getAsJsonObject();
-			boolean server = object.get("server").getAsBoolean();
-			boolean database = object.get("database").getAsBoolean();
-			String version = object.get("version").getAsString();
+			boolean server = object.get(SERVER).getAsBoolean();
+			boolean database = object.get(DATABASE).getAsBoolean();
+			String version = object.get(VERSION).getAsString();
 			return new Response(server, database, version);
 		}
 	}

@@ -168,7 +168,6 @@ public class EndpointsTest {
 	private static final double DELTA = 1e-15;
 	
 	@Test
-	// TODO: da completare
 	public void parseOrderWithPrice() {
 		List<Order> orders = Response.parseOrders(ordersWithPrice());
 		assertEquals(1, orders.size());
