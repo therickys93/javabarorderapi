@@ -55,6 +55,10 @@ public class Response {
 			int id = ordine.get(ID).getAsInt();
 			int table = ordine.get(TABLE).getAsInt();
 			boolean done = ordine.get(DONE).getAsBoolean();
+			double price = 0.0;
+			if(ordine.get("price") != null){
+				price = ordine.get("price").getAsDouble();
+			}
 			JsonArray prodotti = ordine.get(PRODUCTS).getAsJsonArray();
 			Iterator<JsonElement> iteratorProdotti = prodotti.iterator();
 			Product[] products = new Product[prodotti.size()];
@@ -67,7 +71,7 @@ public class Response {
 				products[index] = product;
 				index++;
 			}
-			Order order = new Order(id, table, done, products);
+			Order order = new Order(id, table, done, products, price);
 			orders.add(order);
 		}
 		return orders;

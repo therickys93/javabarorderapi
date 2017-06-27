@@ -101,4 +101,18 @@ public class OrderTest {
 		assertEquals(0, order.products().length);
 	}
 	
+	private static final double DELTA = 1e-15;
+	
+	@Test
+	public void testEleven() {
+		Product[] products = {new Product("brioches", 2), new Product("cappuccino", 3)};
+		Order order = new Order(102, 20, false, products, 1.5);
+		assertEquals(102, order.id());
+		assertEquals(20, order.table());
+		assertFalse(order.done());
+		assertEquals("brioches", order.products()[0].name());
+		assertEquals(2, order.products()[0].quantity());
+		assertEquals(1.5, order.price(), DELTA);
+	}
+	
 }

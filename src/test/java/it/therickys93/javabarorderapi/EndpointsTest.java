@@ -165,6 +165,22 @@ public class EndpointsTest {
 		assertEquals("1.0.0", response.version());
 	}
 	
+	private static final double DELTA = 1e-15;
+	
+	@Test
+	// TODO: da completare
+	public void parseOrderWithPrice() {
+		List<Order> orders = Response.parseOrders(ordersWithPrice());
+		assertEquals(1, orders.size());
+		Order order = orders.get(0);
+		assertEquals(102, order.id());
+		assertEquals(20, order.table());
+		assertFalse(order.done());
+		assertEquals("acqua", order.products()[0].name());
+		assertEquals(2, order.products()[0].quantity());
+		assertEquals(1.5, order.price(), DELTA);
+	}
+	
 	private String statusNotOk(){
 		return "{\"success\":false}";
 	}
@@ -192,5 +208,10 @@ public class EndpointsTest {
 				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}]},"
 				+ "{\"id\":104,\"table\":20,\"done\":false,\"products\":"
 				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}]}]";
-	}	
+	}
+	
+	private String ordersWithPrice() {
+		return "[{\"id\":102,\"table\":20,\"done\":false,\"products\":"
+				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}], \"price\":1.5}]";
+	}
 }
