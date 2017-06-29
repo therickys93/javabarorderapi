@@ -31,6 +31,12 @@ public class BarOrderTest {
 		assertEquals("", response);
 	}
 	
+	public void testInsertProductWithPrice() throws IOException {
+		BarOrder barorder = new BarOrder("http://localhost:8080");
+		String response = barorder.execute(new InsertProduct("cioccolata con panna", 2.5));
+		assertEquals("", response);
+	}
+	
 	public void testFive() throws IOException {
 		BarOrder barorder = new BarOrder("http://localhost:8080");
 		String response = barorder.execute(new DeleteProduct("cioccolata con panna"));

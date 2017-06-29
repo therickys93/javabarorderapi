@@ -13,6 +13,11 @@ public class InsertProduct implements Sendable {
 		this.endpoint = "/v1/insertProduct/" + product;
 	}
 	
+	public InsertProduct(String product, double price) {
+		this.method = "POST";
+		this.endpoint = "/v1/insertProduct/" + product + "/" + price;
+	}
+
 	@Override
 	public String endpoint() {
 		return this.endpoint;

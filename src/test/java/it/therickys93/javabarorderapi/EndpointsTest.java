@@ -46,6 +46,14 @@ public class EndpointsTest {
 	}
 	
 	@Test
+	public void testInsertProductWithPrice() {
+		InsertProduct ipwp = new InsertProduct("cioccolata con panna", 2.5);
+		assertEquals("POST", ipwp.method());
+		assertEquals("/v1/insertProduct/cioccolata con panna/2.5", ipwp.endpoint());
+		assertNull(ipwp.toJson());
+	}
+	
+	@Test
 	public void testSix() {
 		DeleteProduct product = new DeleteProduct("cioccolata con panna");
 		assertEquals("POST", product.method());
