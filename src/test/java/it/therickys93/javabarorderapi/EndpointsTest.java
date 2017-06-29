@@ -80,6 +80,14 @@ public class EndpointsTest {
 	}
 	
 	@Test
+	public void testProductsWithPrice() {
+		ProductsWithPrice pswp = new ProductsWithPrice();
+		assertEquals("GET", pswp.method());
+		assertEquals("/v1/productsWithPrice", pswp.endpoint());
+		assertNull(pswp.toJson());
+	}
+	
+	@Test
 	public void testNine() {
 		Product[] products = {new Product("acqua", 2), new Product("bibite", 3)};
 		Order order = new Order(102, 20, false, products);
@@ -188,6 +196,15 @@ public class EndpointsTest {
 		assertEquals(1.5, order.price(), DELTA);
 	}
 	
+	@Test
+	public void parseProductsWithPrice() {
+		List<ProductWithPrice> products = Response.parseProductsWithPrice(productsWithPrice());
+		assertEquals(2, products.size());
+		ProductWithPrice product = products.get(0);
+		assertEquals("toast", product.name());
+		assertEquals(5.0, product.price(), DELTA);
+	}
+	
 	private String statusNotOk(){
 		return "{\"success\":false}";
 	}
@@ -220,5 +237,9 @@ public class EndpointsTest {
 	private String ordersWithPrice() {
 		return "[{\"id\":102,\"table\":20,\"done\":false,\"products\":"
 				+ "[{\"name\":\"acqua\",\"quantity\":2},{\"name\":\"bibite\",\"quantity\":3}], \"price\":1.5}]";
+	}
+	
+	private String productsWithPrice() {
+		return "[{\"name\": \"toast\",\"price\": 5},{\"name\": \"tramezzini assortiti\",\"price\": 4.5}]";
 	}
 }

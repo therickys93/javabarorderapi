@@ -122,4 +122,20 @@ public class Response {
 		return this.version;
 	}
 
+	public static List<ProductWithPrice> parseProductsWithPrice(String productsWithPrice) {
+		List<ProductWithPrice> productsList = new ArrayList<ProductWithPrice>();
+		JsonParser parser = new JsonParser();
+		JsonArray array = parser.parse(productsWithPrice).getAsJsonArray();
+		Iterator<JsonElement> iterator = array.iterator();
+		String name;
+		double price;
+		while(iterator.hasNext()){
+			JsonObject product = iterator.next().getAsJsonObject();
+			name = product.get("name").getAsString();
+			price = product.get("price").getAsDouble();
+			productsList.add(new ProductWithPrice(name, price));
+		}
+		return productsList;
+	}
+
 }

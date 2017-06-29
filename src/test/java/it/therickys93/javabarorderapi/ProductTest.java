@@ -36,4 +36,13 @@ public class ProductTest {
 		assertEquals("3 acqua", product.prettyToString());
 	}
 	
+	private static final double DELTA = 1e-15;
+	
+	@Test
+	public void testProductWithPrice() {
+		ProductWithPrice pwp = new ProductWithPrice("cioccolata con panna", 2.5);
+		assertEquals("cioccolata con panna", pwp.name());
+		assertEquals(2.5, pwp.price(), DELTA);
+	}
+	
 }

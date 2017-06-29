@@ -49,6 +49,12 @@ public class BarOrderTest {
 		assertEquals("", response);
 	}
 	
+	public void testProductsWithPrice() throws IOException {
+		BarOrder barorder = new BarOrder("http://localhost:8080");
+		String response = barorder.execute(new ProductsWithPrice());
+		assertEquals("", response);
+	}
+	
 	public void testSeven() throws IOException {
 		Product[] products = {new Product("acqua", 2), new Product("bibite", 3)};
 		Order order = new Order(104, 20, false, products);
