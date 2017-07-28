@@ -1,6 +1,26 @@
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk7
+- oraclejdk8
+- oraclejdk7
 script:
-   - ./gradlew clean check
+- ./gradlew clean check jacocoTestReport
+after_success:
+- sh set_tags.sh
+before_cache:
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+deploy:
+  provider: releases
+  api_key:
+    secure: Qu2ZKrq2ISuq8bvZXlgskHChKtFRoM+qtDXlHKlY08+9LWUDfyxIRDCyFQG2BDI8/+5jHcWMbKPLeHgRmh7BGJG5UfLnBUBCnmWzMcCDgxuPpB+EDbuYnypAp8ODKvz20edsnHMY6dFZ2+MAv2OBkm0CTXdzaNlp0F2bVjMKEdI3f+NzjlqM1UGCid8cr5uquizTJ3dLbW51NbCALAwJBiRT3cmF4ld7PrqMrWGS3d6jS8heMA9elc0/9uTGa0qwpEeRJ+/11VOPnCUCDm2a74B3GkwY+juncd+uV+iTwik8yFdQpOrnly5+Nd2d68xSwJDt0Bwu3XUt7y2R6bEBlGPh2csz8bmbo2XMgr0vG1Qp8ojETeh+X3r5SyZ6PAvJaiQeEowQf7K04gWTT/teHGLiy5ZZ2w/ksYRJhgd3nFwbi/7IENimwmw8KSUABn6/viZqLNM44tS2eUVgaekEuhFR4E7ktflL6lVOFqvhFL1WPpDLPxB7d8oQxirdfjhPRDANQyT9O/hbpqq5kL8N4uBmzZN4k9shO4y2Tmorvu4BRw20msLaA1ge0fHNZ0aEn5XBx4+qsGCXR88sZ9OZPur3Ar3TBQbIPOLLuvOCgwplirWi+KhcPxOezJt0zftgxNGZzHODP6NyTtCAvCB8Na3T5qez/EftRj0g4MkdxZM=
+  file: build/libs/*barorder*.jar
+  file_glob: "true"
+  skip_cleanup: true
+  on:
+    branch: master
+    repo: therickys93/javabarorderapi

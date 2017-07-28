@@ -15,7 +15,7 @@ allprojects {
 }
 ```
 
-aggiungere nel file del progetto
+aggiungere nel file del progetto per esempio: ( controllare l'ultima versione nelle release )
 
 ```
 dependencies {
