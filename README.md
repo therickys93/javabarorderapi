@@ -1,5 +1,7 @@
 # Java BarOrder API
 
+[![Build Status](https://travis-ci.org/therickys93/javabarorderapi.svg?branch=master)](https://travis-ci.org/therickys93/javabarorderapi)
+
 Questa libreria è stata scritta in supporto al server [BarOrder](https://github.com/therickys93/barorder.git).
 
 ## installazione con Gradle
