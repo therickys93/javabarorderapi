@@ -11,6 +11,10 @@ import com.google.gson.JsonParser;
 
 public class Response {
 
+	private static final String VERSION = "version";
+	private static final String DATABASE = "database";
+	private static final String SERVER = "server";
+	private static final String PRICE = "price";
 	private static final String QUANTITY = "quantity";
 	private static final String NAME = "name";
 	private static final String PRODUCTS = "products";
@@ -55,6 +59,10 @@ public class Response {
 			int id = ordine.get(ID).getAsInt();
 			int table = ordine.get(TABLE).getAsInt();
 			boolean done = ordine.get(DONE).getAsBoolean();
+			double price = 0.0;
+			if(ordine.get(PRICE) != null){
+				price = ordine.get(PRICE).getAsDouble();
+			}
 			JsonArray prodotti = ordine.get(PRODUCTS).getAsJsonArray();
 			Iterator<JsonElement> iteratorProdotti = prodotti.iterator();
 			Product[] products = new Product[prodotti.size()];
@@ -67,7 +75,7 @@ public class Response {
 				products[index] = product;
 				index++;
 			}
-			Order order = new Order(id, table, done, products);
+			Order order = new Order(id, table, done, products, price);
 			orders.add(order);
 		}
 		return orders;
@@ -95,9 +103,9 @@ public class Response {
 		} else {
 			JsonParser parser = new JsonParser();
 			JsonObject object = parser.parse(string).getAsJsonObject();
-			boolean server = object.get("server").getAsBoolean();
-			boolean database = object.get("database").getAsBoolean();
-			String version = object.get("version").getAsString();
+			boolean server = object.get(SERVER).getAsBoolean();
+			boolean database = object.get(DATABASE).getAsBoolean();
+			String version = object.get(VERSION).getAsString();
 			return new Response(server, database, version);
 		}
 	}
@@ -112,6 +120,22 @@ public class Response {
 
 	public String version() {
 		return this.version;
+	}
+
+	public static List<ProductWithPrice> parseProductsWithPrice(String productsWithPrice) {
+		List<ProductWithPrice> productsList = new ArrayList<ProductWithPrice>();
+		JsonParser parser = new JsonParser();
+		JsonArray array = parser.parse(productsWithPrice).getAsJsonArray();
+		Iterator<JsonElement> iterator = array.iterator();
+		String name;
+		double price;
+		while(iterator.hasNext()){
+			JsonObject product = iterator.next().getAsJsonObject();
+			name = product.get("name").getAsString();
+			price = product.get("price").getAsDouble();
+			productsList.add(new ProductWithPrice(name, price));
+		}
+		return productsList;
 	}
 
 }

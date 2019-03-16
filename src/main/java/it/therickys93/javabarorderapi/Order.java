@@ -13,6 +13,7 @@ public class Order {
 	private int table;
 	private boolean done;
 	private Product[] products;
+	private double price;
 	
 	public Order(int id, int table, boolean done, Product[] products) {
 		this.id = id;
@@ -23,6 +24,14 @@ public class Order {
 
 	public Order() {
 		this(0, 0, false, new Product[0]);
+	}
+
+	public Order(int id, int table, boolean done, Product[] products, double price) {
+		this.id = id;
+		this.table = table;
+		this.done = done;
+		this.products = products;
+		this.price = price;
 	}
 
 	public int id() {
@@ -48,7 +57,6 @@ public class Order {
 		response += ", products=[";
 		for(int index = 0; index < this.products.length; index++){
 			if(index == this.products.length - 1) {
-				// non mettere la virgola finale
 				response += this.products[index].toString() + "";
 			} else {
 				response += this.products[index].toString() + ", ";
@@ -104,6 +112,10 @@ public class Order {
 			}
 		}
 		return response.substring(0, response.length() - 1);
+	}
+
+	public double price() {
+		return this.price;
 	}
 	
 }
