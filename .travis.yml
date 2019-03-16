@@ -2,21 +2,21 @@ language: java
 jdk:
 - oraclejdk8
 script:
-- ./gradlew clean check jacocoTestReport
+- "./gradlew clean check jacocoTestReport"
 after_success:
 - sh set_tags.sh
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
   directories:
-  - $HOME/.m2
-  - $HOME/.gradle
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
+  - "$HOME/.m2"
+  - "$HOME/.gradle"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 deploy:
   provider: releases
   api_key:
-    secure: Qu2ZKrq2ISuq8bvZXlgskHChKtFRoM+qtDXlHKlY08+9LWUDfyxIRDCyFQG2BDI8/+5jHcWMbKPLeHgRmh7BGJG5UfLnBUBCnmWzMcCDgxuPpB+EDbuYnypAp8ODKvz20edsnHMY6dFZ2+MAv2OBkm0CTXdzaNlp0F2bVjMKEdI3f+NzjlqM1UGCid8cr5uquizTJ3dLbW51NbCALAwJBiRT3cmF4ld7PrqMrWGS3d6jS8heMA9elc0/9uTGa0qwpEeRJ+/11VOPnCUCDm2a74B3GkwY+juncd+uV+iTwik8yFdQpOrnly5+Nd2d68xSwJDt0Bwu3XUt7y2R6bEBlGPh2csz8bmbo2XMgr0vG1Qp8ojETeh+X3r5SyZ6PAvJaiQeEowQf7K04gWTT/teHGLiy5ZZ2w/ksYRJhgd3nFwbi/7IENimwmw8KSUABn6/viZqLNM44tS2eUVgaekEuhFR4E7ktflL6lVOFqvhFL1WPpDLPxB7d8oQxirdfjhPRDANQyT9O/hbpqq5kL8N4uBmzZN4k9shO4y2Tmorvu4BRw20msLaA1ge0fHNZ0aEn5XBx4+qsGCXR88sZ9OZPur3Ar3TBQbIPOLLuvOCgwplirWi+KhcPxOezJt0zftgxNGZzHODP6NyTtCAvCB8Na3T5qez/EftRj0g4MkdxZM=
+    secure: IZtUXTUdLAylzNRsm8f1Vl5eHKLCq7jdAFA1TCCKhXY1PZ+bPdPWRW9O4Md71YLyihGw9uMIkAl1VpFvRz5TJii0zmvdJzpOt+uwbGekh0EhUm4XLf3/R2uhtaOZPx3F5shzMgeAF/bC/0hVHxUYwGGbK240FBX5c/azcqqCev0sI7Yo7tU1psovDJ9Yqi3fV9zMT7LThIh0duJXJAX+vjWM5rk7HpZU7dcKlGXLchhMqLS9abT6Yh/8gm1lq6OFrWMT+NiQUv1ONdcAkWNN7aRifELZKjM7FUChLGGdawyU5GeXZWOFpBG1TZB70R5qeaRH17JWdc4ahGsbKysyU3Ifz0xlizoz4nCUuwfiOUXLyBc9o/fzf1ahdgEgcmiHudXtz19lnCRZvL5fxXfIbc9dmlboTj3mSjVOhK5IqYMVwdkXsHaKDr1fRexr8zh2vx1CbLuWJF6Pan7E5CFfoodbb6Jz1xwmrurVyOQL78DoeVePvTKYK592CvBEhIapjL1PquOcNldJ3aesNAU3BrU9UhE7Q8SQoRzLvYvgmgSD0tuWmC1AX/Lv+PdkJoyJLQ8kVjBCliFnPVeC+ZApXYckwmWO6RHHWF7vpXbYSB9Xwsil10TGl2/tV+mg8hWuNnQU58eheK31fBQ8pgE2pGmfpLWa+QV9B4KBGiKfLXc=
   file: build/libs/*barorder*.jar
   file_glob: "true"
   skip_cleanup: true
