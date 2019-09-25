@@ -7,16 +7,23 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.Credentials;
 
 public class BarOrder {
 
 	private static final String APPLICATION_JSON = "application/json; charset=utf-8";
 	String server;
 	OkHttpClient client;
+	private String token;
 	
 	public BarOrder(String server) {
+		this(server, "");
+	}
+	
+	public BarOrder(String server, String token){
 		this.server = server;
-		client = new OkHttpClient();
+		this.client = new OkHttpClient();
+		this.token = token;		
 	}
 	
 	public String execute(Sendable request) throws IOException {
@@ -29,7 +36,7 @@ public class BarOrder {
 	}
 	
 	public String getMethod(Sendable request) throws IOException {
-		Request requestAdd = new Request.Builder().url(this.server + request.endpoint()).build();
+		Request requestAdd = new Request.Builder().url(this.server + request.endpoint()).addHeader("Authorization", this.token).build();
 		Response response = client.newCall(requestAdd).execute();
 		return response.body().string();
 	}
@@ -42,7 +49,7 @@ public class BarOrder {
 		} else {
 			body = RequestBody.create(JSON, request.toJson().toString());
 		}
-		Request requestAdd = new Request.Builder().url(this.server + request.endpoint()).post(body).build();
+		Request requestAdd = new Request.Builder().url(this.server + request.endpoint()).addHeader("Authorization", this.token).post(body).build();
 		Response response = client.newCall(requestAdd).execute();
 		return response.body().string();
 	}
